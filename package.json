@@ -1,0 +1,22 @@
+{
+  "name": "restapinode",
+  "version": "1.0.0",
+  "description": "create rest full api nodejs and mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudokid91/RestApiNode.git"
+  },
+  "author": "hoangnn19",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sudokid91/RestApiNode/issues"
+  },
+  "homepage": "https://github.com/sudokid91/RestApiNode#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
