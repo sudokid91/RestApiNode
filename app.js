@@ -8,7 +8,18 @@ const mongoose = require('mongoose');
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/order');
 
-mongoose.connect(`mongodb://max:${process.env.MONGO_PASSWORD}@cluster0-rar0y.mongodb.net/test?retryWrites=true`);
+mongoose.connect('mongodb+srv://admin:cMefVOUAeETxn3TZ@cluster0-6cyao.mongodb.net/sudokid?retryWrites=true',{ useNewUrlParser: true });
+
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://admin:cMefVOUAeETxn3TZ@cluster0-6cyao.mongodb.net/test?retryWrites=true";
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
+
+mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended : false}));
