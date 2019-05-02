@@ -17,11 +17,14 @@
   },
   "homepage": "https://github.com/sudokid91/RestApiNode#readme",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.3",
     "morgan": "^1.9.1",
+    "multer": "^1.4.1",
     "nodemon": "^1.18.11"
   }
 }

@@ -1,5 +1,7 @@
 {
-    "evn": {
-        "MONGO_PASSWORD": "langtutm1411"
+    "env" : {
+        "JWT-KEY" : "secret",
+        "MONGO_PASSWORD" : "MpzOt3ACzdQHo9LN",
+        "MONGO_DB" : "event-react-dev"
     }
 }

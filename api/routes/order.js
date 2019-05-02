@@ -1,47 +1,14 @@
 const express = require('express');
-
 const route = express.Router();
 
-route.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Handling GET orders'
-    });
-});
+const checkAuth =require('../middleware/check-auth');
 
-route.post('/', (req, res, next) => {
-    const order = {
-        productId : req.body.productId, 
-        quantity : req.body.quantity
-    }
-    res.status(201).json({
-        message: 'Handling POST orders',
-        createOrder : order
-    });
-});
+const OrderController = require('../controllers/order');
 
-route.get('/:orderId', (req, res, next) => {
-    const id = req.params.orderId;
-    if(id === 'sudokid') {
-        res.status(200).json({
-            message: 'You discoverd id is sudokid',
-            id
-        });
-    } else {
-        res.status(200).json({
-            message: 'Not found',
-            id
-        });
-    }
-    
-});
-route.patch('/:orderId', (req, res, next) => {
-    res.status(200).json({
-        message: 'Handling UPDATE orders'
-    });
-});
-route.delete('/:orderId', (req, res, next) => {
-    res.status(200).json({
-        message: 'Handling DELETE orders'
-    });
-});
+route.get('/',checkAuth, OrderController.get_order_all);
+route.post('/', checkAuth, OrderController.post_order);
+route.get('/:orderId', checkAuth, OrderController.get_order_byId);
+route.patch('/:orderId',checkAuth, OrderController.update_order);
+route.delete('/:orderId',checkAuth, OrderController.delete_order);
+
 module.exports = route;
