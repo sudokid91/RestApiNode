@@ -1,5 +1,26 @@
 const Product = require("../models/product"); 
 
+/**
+ * @api {get} /Products List all Products
+ * @apiGroup Products
+ * @apiSuccess {Object[]} Products Product's list
+ * @apiSuccess {Number} Products.id Product id
+ * @apiSuccess {String} Products.title Product title
+ * @apiSuccess {Boolean} Products.done Product is done?
+ * @apiSuccess {Date} Products.updated_at Update's date
+ * @apiSuccess {Date} Products.created_at Register's date
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    [{
+ *      "id": 1,
+ *      "title": "Study",
+ *      "done": false
+ *      "updated_at": "2016-02-10T15:46:51.778Z",
+ *      "created_at": "2016-02-10T15:46:51.778Z"
+ *    }]
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 500 Internal Server Error
+ */
 exports.get_product_all = (req, res, next) => {
     Product.find()
         .select('name price _id productImage')
@@ -70,6 +91,29 @@ exports.upload_image = (req, res, next) => {
         });
 };
 
+/**
+ * @api {get} /Products/:id Find a Product
+ * @apiGroup Products
+ * @apiParam {id} id Product id
+ * @apiSuccess {Number} id Product id
+ * @apiSuccess {String} title Product title
+ * @apiSuccess {Boolean} done Product is done?
+ * @apiSuccess {Date} updated_at Update's date
+ * @apiSuccess {Date} created_at Register's date
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "id": 1,
+ *      "title": "Study",
+ *      "done": false
+ *      "updated_at": "2016-02-10T15:46:51.778Z",
+ *      "created_at": "2016-02-10T15:46:51.778Z"
+ *    }
+ * @apiErrorExample {json} Product not found
+ *    HTTP/1.1 404 Not Found
+ * @apiErrorExample {json} Find error
+ *    HTTP/1.1 500 Internal Server Error
+ */
 exports.get_product_byId = (req, res, next) => {
     const id = req.params.productId;
     Product.findById(id)
@@ -99,6 +143,22 @@ exports.get_product_byId = (req, res, next) => {
     
 };
 
+/**
+ * @api {put} /Products/:id Update a Product
+ * @apiGroup Products
+ * @apiParam {id} id Product id
+ * @apiParam {String} title Product title
+ * @apiParam {Boolean} done Product is done?
+ * @apiParamExample {json} Input
+ *    {
+ *      "title": "Work",
+ *      "done": true
+ *    }
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 204 No Content
+ * @apiErrorExample {json} Update error
+ *    HTTP/1.1 500 Internal Server Error
+ */
 exports.update_product = (req, res, next) => {
     const id = req.params.productId;
     const updateOps = {}
@@ -124,6 +184,15 @@ exports.update_product = (req, res, next) => {
         });
 };
 
+/**
+ * @api {delete} /Products/:id Remove a Product
+ * @apiGroup Products
+ * @apiParam {id} id Product id
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 204 No Content
+ * @apiErrorExample {json} Delete error
+ *    HTTP/1.1 500 Internal Server Error
+ */
 exports.delete_product = (req, res, next) => {
     const id = req.params.productId;
     Product.remove({_id : id})

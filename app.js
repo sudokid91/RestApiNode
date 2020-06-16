@@ -4,12 +4,14 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+// Serving static files from "public" folder
+app.use(express.static('public'));
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/order');
 const userRoutes = require('./api/routes/user');
 
-mongoose.connect('mongodb+srv://admin:cMefVOUAeETxn3TZ@cluster0-6cyao.mongodb.net/sudokid?retryWrites=true',{ useNewUrlParser: true });
+mongoose.connect('mongodb+srv://admin:cMefVOUAeETxn3TZ@cluster0-6cyao.mongodb.net/sudokid?retryWrites=true',{ useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 
 // const MongoClient = require('mongodb').MongoClient;
 // const uri = "mongodb+srv://admin:cMefVOUAeETxn3TZ@cluster0-6cyao.mongodb.net/test?retryWrites=true";
@@ -54,3 +56,5 @@ app.use((error, req, res, next) => {
     });
 });
 module.exports = app;
+
+//general docs api: apidoc -e "(node_modules|public)" -o public/apidoc
